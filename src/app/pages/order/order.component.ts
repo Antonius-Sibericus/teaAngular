@@ -29,6 +29,10 @@ export class OrderComponent implements OnInit {
   public get address() { return this.orderForm.get("address") }
   public get comment() { return this.orderForm.get("address") }
 
+  public orderError: boolean = false
+  public responseError: boolean = false
+  public orderFinished: boolean = false
+
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -41,7 +45,34 @@ export class OrderComponent implements OnInit {
   }
 
   public send(): void {
-    //
-  }
+    this.orderError = false
+    this.responseError = false
+    this.orderFinished = false
 
+    if (this.name && this.last_name && this.phone && this.country && this.zip && this.product && this.address) {
+      if (this.name.value && this.last_name.value && this.phone.value && this.country.value && this.zip.value && this.product.value && this.address.value) {
+        this.productService.sendOrder({
+          name: this.name.value,
+          last_name: this.last_name.value,
+          phone: this.phone.value,
+          country: this.country.value,
+          zip: this.zip.value,
+          product: this.product.value,
+          address: this.address.value,
+          comment: this.comment?.value
+        })
+          .subscribe(response => {
+            if (response.success === 1) {
+              this.orderFinished = true
+            } else {
+              this.responseError = true
+            }
+          })
+      } else {
+        this.orderError = true
+      }
+    } else {
+      this.orderError = true
+    }
+  }
 }
