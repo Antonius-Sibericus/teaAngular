@@ -1,6 +1,10 @@
 <div class="container">
-    <h2 class="text-center">Наши чайные коллекции</h2>
-    <div class="tea-container">
-        <app-product *ngFor="let product of products" [product]="product"></app-product>
+    <h2 class="text-center my-5">Наши чайные коллекции</h2>
+    <div class="tea-container my-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div *ngFor="let product of products" class="col">
+                <app-product [product]="product"></app-product>
+            </div>
+        </div>
     </div>
 </div>

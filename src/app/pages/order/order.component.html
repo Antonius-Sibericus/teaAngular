@@ -1,1 +1,168 @@
-<p>order works!</p>
+<div class="container">
+    <form class="form" [formGroup]="orderForm">
+        <h2 class="mt-5 mb-4 text-center">Сделать заказ</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="itemInput" class="form-label">Название чая</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="itemInput" 
+                        aria-describedby="itemInput"
+                        formControlName="product"
+                        [disabled]="true"
+                    >
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-3">
+                    <label for="firstNameInput" class="form-label">Имя</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="firstNameInput" 
+                        aria-describedby="firstNameInput"
+                        formControlName="name" 
+                        required
+                        validationDirective="[a-zA-Zа-яА-Я]"
+                        [class]="{'border-danger': name?.invalid && (name?.dirty || name?.touched)}"
+                    >
+                </div>
+                <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                    <div class="text-danger" *ngIf="name?.errors?.['required']">
+                        Введите имя
+                    </div>
+                    <div class="text-danger" *ngIf="name?.errors?.['pattern'] && name?.value">
+                        Введите имя правильно
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-3">
+                    <label for="lastNameInput" class="form-label">Фамилия</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="lastNameInput" 
+                        aria-describedby="lastNameInput"
+                        formControlName="last_name"
+                        required
+                        validationDirective="[a-zA-Zа-яА-Я]"
+                        [class]="{'border-danger': last_name?.invalid && (last_name?.dirty || last_name?.touched)}"
+                    >
+                </div>
+                <div *ngIf="last_name?.invalid && (last_name?.dirty || last_name?.touched)">
+                    <div class="text-danger" *ngIf="last_name?.errors?.['required']">
+                        Введите фамилию
+                    </div>
+                    <div class="text-danger" *ngIf="last_name?.errors?.['pattern'] && last_name?.value">
+                        Введите фамилию правильно
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Телефон</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="phoneNumber" 
+                        aria-describedby="phoneNumber"
+                        formControlName="phone"
+                        required
+                        validationDirective="(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))$"
+                        [class]="{'border-danger': phone?.invalid && (phone?.dirty || phone?.touched)}"
+                    >
+                </div>
+                <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+                    <div class="text-danger" *ngIf="phone?.errors?.['required']">
+                        Введите телефон
+                    </div>
+                    <div class="text-danger" *ngIf="phone?.errors?.['pattern'] && phone?.value">
+                        Введите телефон правильно
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label for="countryInput" class="form-label">Страна</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="countryInput" 
+                        aria-describedby="countryInput"
+                        formControlName="country"
+                        required
+                        validationDirective="[a-zA-Zа-яА-Я]"
+                        [class]="{'border-danger': country?.invalid && (country?.dirty || country?.touched)}"
+                    >
+                </div>
+                <div *ngIf="country?.invalid && (country?.dirty || country?.touched)">
+                    <div class="text-danger" *ngIf="country?.errors?.['required']">
+                        Введите название страны
+                    </div>
+                    <div class="text-danger" *ngIf="country?.errors?.['pattern'] && country?.value">
+                        Введите название страны правильно
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label for="indexInput" class="form-label">Индекс</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="indexInput" 
+                        aria-describedby="indexInput"
+                        formControlName="zip"
+                        required
+                        [class]="{'border-danger': zip?.invalid && (zip?.dirty || zip?.touched)}"
+                    >
+                </div>
+                <div class="text-danger" *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)">
+                    Введите индекс
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="addressInput" class="form-label">Адрес</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="addressInput" 
+                        aria-describedby="addressInput"
+                        formControlName="address"
+                        required
+                        validationDirective="[A-Za-zа-яА-Я0-9\-\s\/\\]"
+                        [class]="{'border-danger': address?.invalid && (address?.dirty || address?.touched)}"
+                    >
+                </div>
+                <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+                    <div class="text-danger" *ngIf="address?.errors?.['required']">
+                        Введите адрес
+                    </div>
+                    <div class="text-danger" *ngIf="address?.errors?.['pattern'] && address?.value">
+                        Введите адрес правильно
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="commentInput" class="form-label">Комментарий к заказу</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="commentInput" 
+                        aria-describedby="commentInput"
+                        formControlName="comment"
+                    >
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button type="button" class="btn btn-primary px-4 my-3 rounded-3 text-light w-25"
+                    (click)="send()">Отправить</button>
+            </div>
+        </div>
+    </form>
+</div>

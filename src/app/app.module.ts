@@ -8,8 +8,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './pages/main/main.component';
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
-import { ProductComponent } from './pages/product/product.component';
+import { ProductComponent } from './components/product/product.component';
 import { OrderComponent } from './pages/order/order.component';
+import { ItemComponent } from './pages/item/item.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ValidationDirective } from './directives/validation-directive.directive';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,15 @@ import { OrderComponent } from './pages/order/order.component';
     MainComponent,
     CatalogueComponent,
     ProductComponent,
-    OrderComponent
+    OrderComponent,
+    ItemComponent,
+    ValidationDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

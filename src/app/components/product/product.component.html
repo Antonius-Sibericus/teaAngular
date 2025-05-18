@@ -1,0 +1,13 @@
+<div class="card h-100 m-auto text-start d-flex flex-column align-items-start">
+    <!-- <a class="product-image" href="../../../assets/images/1.png"> -->
+        <img src="../../../assets/images/1.png" [alt]="product.id" class="card-img-top">
+    <!-- </a> -->
+    <!-- <a class="product-image" [href]="product.image">
+        <img [src]="product.image" [alt]="product.id" class="card-img-top">
+    </a> -->
+    <div class="card-body h-100 d-flex flex-column align-items-start">
+        <h5 class="product-title">{{product.title}}</h5>
+        <p class="card-text">Цена: {{product.price}} руб.</p>
+        <a class="btn btn-primary px-5 mt-auto" [routerLink]="['/products', product.id]" (click)="setProduct()">Подробнее</a>
+    </div>
+</div>
