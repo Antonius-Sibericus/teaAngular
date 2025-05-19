@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { customValidator, ValidationDirective } from 'src/app/directives/validation-directive.directive';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,15 +10,26 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class OrderComponent implements OnInit {
 
-  public orderForm = new FormGroup({
-    name: new FormControl(""),
-    last_name: new FormControl(""),
-    phone: new FormControl(""),
-    country: new FormControl(""),
-    zip: new FormControl(""),
-    product: new FormControl(""),
-    address: new FormControl(""),
-    comment: new FormControl("")
+  // public orderForm = new FormGroup({
+  //   name: new FormControl(""),
+  //   last_name: new FormControl(""),
+  //   phone: new FormControl(""),
+  //   country: new FormControl(""),
+  //   zip: new FormControl(""),
+  //   product: new FormControl(""),
+  //   address: new FormControl(""),
+  //   comment: new FormControl("")
+  // })
+
+  public orderForm = this.fb.group({
+    name: ["", [Validators.required, customValidator("[a-zA-Zа-яА-Я]")]],
+    last_name: ["", [Validators.required, customValidator("[a-zA-Zа-яА-Я]")]],
+    phone: ["", [Validators.required, customValidator("(8|7|(\\+7))((\\d{10})|(\\s*\\(\\d{3}\\)\\s*\\d{3}\\s*\\d{2}\\s*\\d{2}))")]],
+    country: ["", [Validators.required, customValidator("[a-zA-Zа-яА-Я]")]],
+    zip: ["", [Validators.required]],
+    product: ["", [Validators.required]],
+    address: ["", [Validators.required]],
+    comment: [""]
   })
 
   public get name() { return this.orderForm.get("name") }
@@ -33,7 +45,7 @@ export class OrderComponent implements OnInit {
   public responseError: boolean = false
   public orderFinished: boolean = false
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.orderForm.get("product")?.disable()
@@ -64,6 +76,7 @@ export class OrderComponent implements OnInit {
           .subscribe(response => {
             if (response.success === 1) {
               this.orderFinished = true
+              this.orderForm.reset()
             } else {
               this.responseError = true
             }

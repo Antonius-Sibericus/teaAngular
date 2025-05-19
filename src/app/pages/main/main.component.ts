@@ -26,7 +26,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.observable = new Observable((observer) => {
       const timeout1 = setTimeout(() => {
         observer.next(true)
-      }, 10000)
+      }, 10000000)
       const timeout2 = setTimeout(() => {
         observer.error(false)
       }, 10000)

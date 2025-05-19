@@ -1,5 +1,12 @@
 import { Directive, Input } from '@angular/core';
-import { AbstractControl, NG_ASYNC_VALIDATORS, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
+import { AbstractControl, NG_ASYNC_VALIDATORS, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+
+export function customValidator(pattern: string): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const result = new RegExp(pattern).test(control.value)
+    return result ? null : { pattern: { value: control.value } }
+  }
+}
 
 @Directive({
   selector: '[validationDirective]',
@@ -14,7 +21,6 @@ export class ValidationDirective implements Validator {
   constructor() { }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    const result = new RegExp(this.pattern).test(control.value)
-    return result ? null : { pattern: { value: control.value } }
+    return customValidator(this.pattern)(control)
   }
 }

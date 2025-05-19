@@ -1,6 +1,6 @@
 <div class="container">
-    <form class="form" [formGroup]="orderForm" *ngIf="!orderFinished">
-        <h2 class="mt-5 mb-4 text-center">Сделать заказ</h2>
+    <form class="form" [formGroup]="orderForm" *ngIf="!orderFinished" (ngSubmit)="send()">
+        <h2 class="mt-0 mb-auto text-center">Сделать заказ</h2>
         <div class="row">
             <div class="col-12">
                 <div class="mb-3">
@@ -71,7 +71,7 @@
                         aria-describedby="phoneNumber"
                         formControlName="phone"
                         required
-                        validationDirective="(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))$"
+                        validationDirective="(8|7|(\+7))((\d{10})|(\s*\(\d{3}\)\s*\d{3}\s*\d{2}\s*\d{2}))"
                         [class]="{'border-danger': phone?.invalid && (phone?.dirty || phone?.touched)}"
                     >
                 </div>
@@ -160,8 +160,8 @@
                 </div>
             </div>
             <div class="col-12 text-center">
-                <button type="button" class="btn btn-primary px-4 my-3 rounded-3 text-light w-25"
-                    (click)="send()">Отправить</button>
+                <button class="btn btn-primary px-4 my-3 rounded-3 text-light w-25"
+                    [disabled]="orderForm.invalid || orderForm.disabled">Отправить</button>
                 <div class="text-danger" *ngIf="orderError">Правильно введите данные</div>
                 <div class="text-danger" *ngIf="responseError">Возникла ошибка при отпрпвке данных</div>
             </div>
