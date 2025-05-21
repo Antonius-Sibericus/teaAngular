@@ -8,6 +8,7 @@ import { MainModule } from './views/main/main.module';
 import { OrderModule } from './views/order/order.module';
 import { ProductsModule } from './views/products/products.module';
 import { SharedModule } from './shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     OrderModule,
     ProductsModule,
     SharedModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

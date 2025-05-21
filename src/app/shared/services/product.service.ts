@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, retry } from 'rxjs';
 import { ProductType } from '../../types/product.type';
 import { OrderType } from '../../types/order.type';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,10 @@ export class ProductService {
   }
 
   public getProducts(): Observable<ProductType[]> {
-    return this.http.get<ProductType[]>("https://testologia.ru/tea")
+    return this.http.get<ProductType[]>(environment.apiURL + "tea")
   }
 
   public sendOrder(data: OrderType) {
-    return this.http.post<{success: number}>("https://testologia.ru/order-tea", data)
+    return this.http.post<{success: number}>(environment.apiURL + "order-tea", data)
   }
 }
