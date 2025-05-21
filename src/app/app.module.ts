@@ -4,33 +4,23 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { MainComponent } from './pages/main/main.component';
-import { CatalogueComponent } from './pages/catalogue/catalogue.component';
-import { ProductComponent } from './components/product/product.component';
-import { OrderComponent } from './pages/order/order.component';
-import { ItemComponent } from './pages/item/item.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ValidationDirective } from './directives/validation-directive.directive';
+import { MainModule } from './views/main/main.module';
+import { OrderModule } from './views/order/order.module';
+import { ProductsModule } from './views/products/products.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    MainComponent,
-    CatalogueComponent,
-    ProductComponent,
-    OrderComponent,
-    ItemComponent,
-    ValidationDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    MainModule,
+    OrderModule,
+    ProductsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

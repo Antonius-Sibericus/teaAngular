@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { customValidator, ValidationDirective } from 'src/app/directives/validation-directive.directive';
-import { ProductService } from 'src/app/services/product.service';
+import { customValidator, ValidationDirective } from 'src/app/shared/directives/validation-directive.directive';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-order',

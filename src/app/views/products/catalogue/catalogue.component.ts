@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { catchError, retry } from 'rxjs';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { ProductType } from 'src/app/types/product.type';
 
 @Component({
